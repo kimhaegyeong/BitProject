@@ -76,7 +76,7 @@ $(document).on(
 			var gray = "grayscale(1)"; // gray
 
 			$.post(
-					'../json/storage/view.do',
+					ikkosaUrl + 'json/storage/view.do',
 					{
 						docid : saveList[index].docid
 					// 세션안에 있는 uno
@@ -90,7 +90,7 @@ $(document).on(
 								$('.heart:eq(' + index + ')').css(style); // 하트색
 								// 변경(빨간색)
 
-								$.post('../json/storage/add.do', {
+								$.post(ikkosaUrl+ 'json/storage/add.do', {
 									uno : 1,// 세션안에 있는 uno
 									title : saveList[index].title,
 									price : saveList[index].price_min,
@@ -126,7 +126,7 @@ $(document).on(
 											.css("-webkit-filter",
 													"grayscale(100%)"); // 하트색
 									// 변경(그레이)
-									$.post('../json/storage/delete.do', {
+									$.post(ikkosaUrl + 'json/storage/delete.do', {
 										docid : saveList[index].docid
 									// 세션안에 있는 uno
 									}, function(result) {
@@ -282,6 +282,7 @@ function priceFormat(transformData) {
 	var price;
 	for ( var i in transformData.channel.item) {
 		price = transformData.channel.item[i].price_min;
+	
 		transformData.channel.item[i].price_min = price.split(
 				/(?=(?:\d{3})+(?:\.|$))/g).join(',');
 	}
@@ -305,13 +306,13 @@ function setPageNo(pageNo, maxPageNo) {
 
 function plusCount(bno) {
 	console.log('조회수증가 ' + bno);
-	$.post('../json/board/plusCount.do' /* URL */
+	$.post(ikkosaUrl + 'json/board/plusCount.do' /* URL */
 	, { /* 서버에 보낼 데이터를 객체에 담아 넘긴다 */
 		no : bno
 	}, function(result) { /* 서버로부터 응답을 받았을 때 호출될 메서드 */
 		if (result.status == "success") {
 			$('#btnCancel').click(); // click 이벤트 발생시킴.
-			location.href = '../board/boardView.html?no=' + bno;
+			location.href = ikkosaUrl + 'board/boardView.html?no=' + bno;
 		} else {
 			alert("등록 실패!");
 		}
