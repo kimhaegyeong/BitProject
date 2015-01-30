@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height">
+<title>글작성</title>
+<!-- --------------------- 스크립트   ------------ -->
+<script src='js/jquery-1.11.1.js'></script>
+<script src='js/bootstrap.min.js'></script>
+
+<!-- ---------------- jQuery Mobile -------------------------- -->
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+<script src="js/jquery.js"></script>
+<script src="js/jquery.mobile-1.4.5.js"></script>
+
+<!-- -------------------- CSS --------------------- -->
+<link href="css/common.css" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+/* option 내부 디자인 : 현재 안됌!!  */
+option.optionCss {
+	height: 20px;
+	margin: 5px;
+	padding: 10px;
+}
+
+.writeSelection {
+	width: 19%;
+	letter-spacing: 6px;
+	margin-right: 2%;
+}
+</style>
+<style>
+/* 폰트 적용 */
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+/* div {
+  border: 1px solid black;
+} */
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	height: 100%;
+	/*   border: 1px solid blue; 
+ */
+}
+
+#customContainer {
+	/*  margin: -10px; */
+	/*    border: 1px solid orange; 
+ */
+	height: 100%;
+}
+
+#main {
+	margin-top: -20px;
+	float: left;
+	width: 100%;
+	height: 100%;
+}
+
+/* #sub {
+  margin-left: 80%;
+  width: 20%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+} */
+#loginDiv {
+	height: 8%;
+	background-color: #077187;
+}
+
+h2 {
+	color: white;
+	padding: 10px 10px;
+}
+
+#underLoginSection {
+	height: 15%;
+	background-color: #FFFFCC;
+}
+
+.underLogin {
+	margin-top: 10px;
+	float: left;
+	width: 49%;
+	height: 100%;
+	float: left;
+}
+
+.underLogin>img {
+	/*  border: 1px solid black;
+ */
+	margin-left: 32%;
+	width: 32%;
+}
+
+.underLogin>div {
+	/*  border: 1px solid black;
+ */
+	text-align: center;
+	font-family: Hanna;
+	font-size: 150%;
+}
+
+#searchBlock {
+	width: 100%;
+	height: 7%;
+	display: inline-block;
+	border-bottom: 1px solid #aaaaaa;
+}
+
+.searchImg {
+	display: inline-block;
+	width: 10%;
+	position: relative;
+	left: 10px;
+	margin: 5px;
+}
+
+#input {
+	float: left;
+	width: 65%;
+	height: 100%;
+	margin-top: 3px;
+	margin-left: 10px;
+	border: 0px solide black;
+}
+
+#input>input {
+	height: 100%;
+	width: 100%;
+}
+
+#menuDiv {
+	height: 71%;
+}
+
+.menuList {
+	height: 8%;
+	padding-left: 10px;
+	padding-top: 3%;
+	font-family: Hanna;
+	font-size: 120%;
+	border-bottom: 1px solid #aaaaaa;
+}
+
+.communityClass {
+	padding-eft: 30px;
+}
+</style>
+</head>
+
+<body>
+<div data-role="page" id="demo-page" data-theme="d" data-url="demo-page">
+
+	<!-- 패널 -->
+	<div data-role="panel" id="mypanel" data-position="left"
+		data-display="push">
+		<div class='menuPanel'>
+			<!-- <h1>11111</h1>
+  <a href='menu.html'></a>  -->
+		</div>
+	</div>
+
+	<div id='topBar' data-role="header">
+		<a href="#mypanel"
+			class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all ui-nodisc-icon transparentButton"></a>
+		<h1 id='search'>글 작 성</h1>
+		<a href="#" class="topRightButton">저장</a>
+	</div>
+
+	<div data-role="content" class="containerMain">
+		<div>
+			<select class="selectCategory">
+				<option class='optionCss' disabled selected>카테고리</option>
+				<option class='optionCss'>좋아요</option>
+				<option class='optionCss'>나빠요</option>
+			</select>
+		</div>
+
+		<div>
+			<select class="selectCategory">
+				<option class='optionCss' disabled selected>제품분류</option>
+				<option class='optionCss'>패션/뷰티</option>
+				<option class='optionCss'>유아동/식품</option>
+				<option class='optionCss'>가구/리빙/건강</option>
+				<option class='optionCss'>스포츠/자동차/취미</option>
+				<option class='optionCss'>컴퓨터/디지털/가전</option>
+				<option class='optionCss'>도서/타켓</option>
+			</select>
+
+		</div>
+		<input type="text" class="form-control" placeholder="제목">
+		<div></div>
+
+		<div>
+			<textarea class="form-control" placeholder="내용" rows="30"></textarea>
+		</div>
+	</div>
+
+	<div data-role="footer" data-position="fixed" id='BottomBar'>
+		<a href="index.html" id='cameraBtn' class='writeSelection'
+			data-role="button" data-inline="true">카메라</a> <a href="index.html"
+			id='imgBtn' class='writeSelection' data-role="button"
+			data-inline="true">이미지</a> <a href="index.html" id='storageBtn'
+			class='writeSelection' data-role="button" data-inline="true">보관함</a>
+		<a href="index.html" id='shareBtn' class='writeSelection'
+			data-role="button" data-inline="true">공유</a>
+	</div>
+</div>
+	<!------------------------div container 끝 ----------------------->
+	<script>
+		$(".transparentButton").click(function() {
+ 			$("#mypanel").load("menu.html");
+		});
+
+		/* swiperight */
+		 $( document ).on( "pageinit", "#demo-page", function() {
+			  var $page = $(this);
+			  $page.on( "swiperight", function( e ) {
+			    if ( $page.jqmData( "panel" ) !== "open" ) {
+			      if ( e.type === "swiperight" ) {
+		          $("#mypanel").load("menu.html");
+			        $page.find( "#mypanel" ).panel( "open" );
+			      }
+			    }
+			  });
+			});
+		
+	</script>
+
+
+</body>
+</html>
+

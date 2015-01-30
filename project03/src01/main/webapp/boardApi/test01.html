@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Facebook Login JavaScript Example</title>
+<meta charset="UTF-8">
+</head>
+<body>
+<div class="visible-xs" style="float:left">
+  <span id="ktalk"><img src="./images/kakaotalk.png" width="32" onclick="executeURLLink()"></span>
+  <span id="kstory"><img src="./images/kakaostory.png" width="32" onclick="executeKakaoStoryLink()"></span>
+</div>
+
+
+<!-- 카카오 공유 -->
+<script type="text/javascript" src="./images/kakao.link.js"></script>
+<script>var curURL = location.href;
+var curTitle = document.getElementsByTagName("TITLE")[0].text;
+function executeURLLink() {
+    kakao.link("talk").send({
+        msg: $('.article p:first-child,.article p:nth-child(2),.article p:nth-child(3),.article p:nth-child(4)').text()+"\n...더보기",
+        url: curURL,
+        appid: "nubiz.tistory.com",
+        appver: "1.0",
+        appname: curTitle,
+        type: "link"
+    })
+}
+
+function executeKakaoStoryLink() {
+    kakao.link("story").send({
+        post: curURL,
+        appid: "nubiz.tistory.com",
+        appver: "1.0",
+        appname: "nubiz.tistory.com"
+    })
+};
+</script>
+
+</body>
+</html>
