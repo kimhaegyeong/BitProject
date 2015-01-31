@@ -1,7 +1,7 @@
 $(document).on( 'pageinit',function(event){
 	$("#query").keydown(function(key) {
 		if (key.keyCode == 13) {
-			location.href = ikkosaUrl + "api/list.html?searchKey=" + $('#query').val();
+			location.href = "../api/list.html?searchKey=" + $('#query').val();
 		}
 	});
 });
@@ -11,17 +11,17 @@ $("#barcodeBtn").click(function() {
 });
 
 $('#loginBtn').click(function() {
-	location.href = ikkosaUrl + 'auth/login.html';
+	location.href = '../auth/login.html';
 });
 
 $('.logoutBtn').click(function(event) {
-	$.getJSON(ikkosaUrl + 'json/auth/logout.do', function(data) {
-		location.href = ikkosaUrl + 'auth/login.html';
+	$.getJSON('../json/auth/logout.do', function(data) {
+		location.href = '../auth/login.html';
 	});
 });
 
 $('#homeBtn').click(function() {
-	location.href = ikkosaUrl + 'user/home.html';
+	location.href = '../user/home.html';
 });
 
 /*
@@ -29,23 +29,23 @@ $('#homeBtn').click(function() {
  */
 
 $('#mypage').click(function() {
-	location.href = ikkosaUrl + 'user/checkPwd.html';
+	location.href = '../user/checkPwd.html';
 });
 
 $('#storage').click(function() {
-	location.href = ikkosaUrl + 'storage/storage.html';
+	location.href = '../storage/storage.html';
 });
 
 $('#community').click(function() {
-	location.href = ikkosaUrl + 'board/boardList.html';
+	location.href = '../board/boardList.html';
 });
 
 $('#good').click(function() {
-	location.href = ikkosaUrl + 'board/boardList.html?ifLike=true';
+	location.href = '../board/boardList.html?ifLike=true';
 });
 
 $('#bad').click(function() {
-	location.href = ikkosaUrl + 'board/boardList.html?ifLike=false';
+	location.href = '../board/boardList.html?ifLike=false';
 });
 
 

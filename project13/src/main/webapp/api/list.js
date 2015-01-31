@@ -1,4 +1,4 @@
-var saveList = {};
+var saveList = null;
 var community = false;
 var searchKey = null;
 
@@ -14,6 +14,7 @@ $(function() {
 	});
 
 	searchKey = decodeURI(url('?searchKey'));
+	console.log(searchKey);
 
 	/* 최초 검색 결과 */
 	daumShoppingSearch.init();
@@ -53,106 +54,64 @@ $(document).on('click', '.data-row a', function() {
 
 $(document).on("click", "#select-choice", function() {
 	// alert($("#select-choice").val());
-	daumShoppingSearch.init();
 	daumShopping.sort = $("#select-choice").val();
 	daumShoppingSearch.search();
 });
 
-$(document).on(
-		"click",
-		".heart",
-		function() {
-			console.log('하트클릭' + $('.heart').index(this));
-			var index = $('.heart').index(this);
-			var style = {
-				'opacity' : '1',
-				'filter' : 'none',
-				'-webkit-filter' : 'grayscale(0%)'
-			};
-			var color = $('.heart:eq(' + index + ')').css("-webkit-filter"); // 버튼
-			// 위치의
-			// 대한 색
-			var red = "grayscale(0)"; // red
-			var gray = "grayscale(1)"; // gray
+$(document).on("click", ".heart", function(){
+  console.log('하트클릭' + $('.heart').index(this));
+  var index = $('.heart').index(this);
+  var style = {
+      'opacity' : '1',
+      'filter' : 'none',
+      '-webkit-filter' : 'grayscale(0%)'
+  };
+  var color = $('.heart:eq(' + index + ')').css("-webkit-filter"); //버튼 위치의 대한 색
+  var red = "grayscale(0)"; //red
+  var gray = "grayscale(1)"; //gray
 
-			$.post(
-					ikkosaUrl + 'json/storage/view.do',
-					{
-						docid : saveList[index].docid
-					// 세션안에 있는 uno
-					},
-					function(result) {
-						if (result.status == "success") {
-							console.log("성공?????");
-							if (result.storage == null & color == gray) {
-								console.log("성공22222?????"
-										+ saveList[index].price_min);
-								$('.heart:eq(' + index + ')').css(style); // 하트색
-								// 변경(빨간색)
+  $.post('../json/storage/view.do'  
+      , { 
+        docid: saveList[index].docid //세션안에 있는 uno
+      }
+      , function(result){  
+        if (result.status == "success") {
+          console.log("성공?????");
+          
+          if(result.storage == null & color == gray){
+            console.log("성공22222?????");
 
-								$.post(ikkosaUrl+ 'json/storage/add.do', {
-									uno : 1,// 세션안에 있는 uno
-									title : saveList[index].title,
-									price : saveList[index].price_min,
-									category : saveList[index].category_name,
-									sdate : saveList[index].publish_date,
-									link : saveList[index].link,
-									img_url : saveList[index].image_url,
-									docid : saveList[index].docid
+            $.post('../json/storage/add.do'   
+                , function(result){  
+                  if (result.status == "success") {
+                    alert("상품등록 성공!!");
+                  } else {
+                    alert("등록 실패!");
+                  }
+                } 
+                , 'json'  )
 
-								}
+                .fail(function(jqXHR, textStatus, errorThrown){ 
+                  alert(textStatus + ":" + errorThrown);
+                });
 
-								, function(result) {
-									if (result.status == "success") {
-										alert("상품등록 성공!!");
-									} else {
-										alert("등록 실패!");
-									}
-								}, 'json')
+          }else if(result.storage == null & color == red){
+          }else{
+            if(color == gray)            
+            else             
+            
+          }
 
-								.fail(function(jqXHR, textStatus, errorThrown) {
-									alert(textStatus + ":" + errorThrown);
-								});
+        } else {
+          alert("등록 실패!");
+        }
+      } 
+      , 'json'     )
+      .fail(function(jqXHR, textStatus, errorThrown){ 
+        alert(textStatus + ":" + errorThrown);
+      });
+});
 
-							} else if (result.storage == null & color == red) {
-								console.log("이상한 조건..");
-							} else {
-								if (color == gray) {
-									$('.heart:eq(' + index + ')').css(style);
-									alert("이미 등록된 상품입니다.");
-								} else {
-									$('.heart:eq(' + index + ')').css(
-											"opacity", "0.2")
-											.css("-webkit-filter",
-													"grayscale(100%)"); // 하트색
-									// 변경(그레이)
-									$.post(ikkosaUrl + 'json/storage/delete.do', {
-										docid : saveList[index].docid
-									// 세션안에 있는 uno
-									}, function(result) {
-										if (result.status == "success") {
-											console.log("제거성공!");
-											alert("보관함 목록에서 제거되었습니다.");
-
-										} else {
-											alert("등록 실패!");
-										}
-									}, 'json').fail(
-											function(jqXHR, textStatus,
-													errorThrown) {
-												alert(textStatus + ":"
-														+ errorThrown);
-											});
-								}
-							}
-
-						} else {
-							alert("등록 실패!");
-						}
-					}, 'json').fail(function(jqXHR, textStatus, errorThrown) {
-				alert(textStatus + ":" + errorThrown);
-			});
-		});
 
 $(document).on(
 		"click",
@@ -177,16 +136,15 @@ var daumShoppingSearch = {
 		this.q = "'" + searchKey + "'";
 		console.log("검색 키워드 : " + this.q);
 
-		// saveList 초기화
-		saveList = {};
-		console.log("saveList 길이 확인 : " + Object.keys(saveList).length);
-
 		// 검색 객체들 초기화.
 		daumShopping.init(6);
 	},
 	/** 검색 * */
 	search : function() {
-		this.query = '?apikey=' + this.apikey + '&output=json&q=' + this.q;
+		console.log('daumShoppingSearch search()');
+
+		this.query = '?apikey=' + this.apikey + '&output=json&q='
+				+ this.q;
 		console.log(this.query);
 
 		// 검색어에 맞게 각각 첫페이지를 띄움.
@@ -202,19 +160,18 @@ var daumShoppingSearch = {
 			crossDomain : true,
 			contentType : "text/json;charset=UTF-8",
 			success : function(responseData, textStatus, errorThrown) {
-				if (Object.keys(saveList).length == 0) {
-					// Object deep copy 사용
-					$.extend(true, saveList, responseData.channel.item);
-				} else {
-					var temp = $.extend(true, {}, responseData.channel.item);
-
-					saveList = $.merge($.merge([], saveList), temp);
+				if (saveList == null) {
+					saveList = responseData.channel.item;
+					/*
+					 * resultNav(responseData);
+					 */} else {
+					$.merge(saveList, responseData.channel.item);
 				}
 
-				var transformData = $.extend(true, {}, responseData);
-				yyyyMMddpriceResultFormat(transformData)
-				transformData = priceFormat(transformData);
-				daumShoppingSearch.pongSearch(transformData);				
+				var transfromData = (responseData);
+				transfromData = priceFormat(transfromData);
+
+				daumShoppingSearch.pongSearch(transfromData);
 			},
 			error : function(responseData, textStatus, errorThrown) {
 				alert('POST failed.');
@@ -224,7 +181,7 @@ var daumShoppingSearch = {
 	},
 	/** 결과를 뿌려줌. * */
 	pongSearch : function(data) {
-		// console.log("결과 데이터------------>",data);
+	  console.log("결과 데이터------------>",data);
 		if (daumShopping.pgno == 1) {
 			require([ 'text!templates/api-top.html' ], function(html) {
 				var template = Handlebars.compile(html);
@@ -264,30 +221,29 @@ var daumShopping = {
 	}
 };
 
-function yyyyMMddpriceResultFormat(transformData) {
+function (data) {
 	var str;
 	var date;
 
-	for ( var i in transformData.channel.item) {
-		date = transformData.channel.item[i].publish_date;
+	for ( var i in data.channel.item) {
+		date = data.channel.item[i].publish_date;
 		str = date.substr(0, 4) + "." + date.substr(4, 2) + "."
 				+ date.substr(6, 2);
-		transformData.channel.item[i].publish_date = str;
+		data.channel.item[i].publish_date = str;
 	}
 
-	return transformData;
+	return data;
 }
 
-function priceFormat(transformData) {
+function priceFormat(data) {
 	var price;
-	for ( var i in transformData.channel.item) {
-		price = transformData.channel.item[i].price_min;
-	
-		transformData.channel.item[i].price_min = price.split(
-				/(?=(?:\d{3})+(?:\.|$))/g).join(',');
+	for ( var i in data.channel.item) {
+		price = data.channel.item[i].price_min;
+		data.channel.item[i].price_min = price.split(/(?=(?:\d{3})+(?:\.|$))/g)
+				.join(',');
 	}
 
-	return transformData
+	return data
 }
 
 /** ********** 검색 결과 ***************** */
@@ -306,13 +262,13 @@ function setPageNo(pageNo, maxPageNo) {
 
 function plusCount(bno) {
 	console.log('조회수증가 ' + bno);
-	$.post(ikkosaUrl + 'json/board/plusCount.do' /* URL */
+	$.post('../json/board/plusCount.do' /* URL */
 	, { /* 서버에 보낼 데이터를 객체에 담아 넘긴다 */
 		no : bno
 	}, function(result) { /* 서버로부터 응답을 받았을 때 호출될 메서드 */
 		if (result.status == "success") {
 			$('#btnCancel').click(); // click 이벤트 발생시킴.
-			location.href = ikkosaUrl + 'board/boardView.html?no=' + bno;
+			location.href = '../board/boardView.html?no=' + bno;
 		} else {
 			alert("등록 실패!");
 		}

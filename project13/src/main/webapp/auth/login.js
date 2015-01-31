@@ -3,7 +3,7 @@ $(function(){
   
   $('#btnLogin').click(function(event){
 	  /*console.log($('#email').val());*/
-    $.post(ikkosaUrl + 'json/auth/login.do'
+    $.post('../json/auth/login.do'
         , {
           email : $('#email').val(),
           pwd : $('#pwd').val(),
@@ -11,7 +11,7 @@ $(function(){
         }
         , function(data){
           if (data.status == 'success') {
-            location.href = ikkosaUrl + 'user/home.html';
+            location.href = '../user/home.html';
           } else {
             alert('로그인 아이디 또는 암호가 맞지 않습니다.');
             $('#pwd').val('');
@@ -20,7 +20,7 @@ $(function(){
         , 'json');
   });
   
-  $("#left-panel").load(ikkosaUrl + "auth/menu.html", function(){    
+  $("#left-panel").load("../auth/menu.html", function(){    
 	    $( "#login" ).page("destroy").page();
   });
   
@@ -34,18 +34,11 @@ $(function(){
 				}
 			}
 		});
-	});  
+	});
+  
 });
 
-$('#signUp').on('click', function() {
-	location.href = ikkosaUrl + 'user/signUp.html';
 
-});
-
-$('#pwdSearch').on('click', function() {
-	location.href = ikkosaUrl + 'user/findPwd.html';
-
-});
 
 
 

@@ -81,6 +81,7 @@ function loadBoardView(no) {
       // handlebars 이용시!
       // template(출력할 변수)
       $('#viewDiv').html(template(board));
+
     });
   });
 }

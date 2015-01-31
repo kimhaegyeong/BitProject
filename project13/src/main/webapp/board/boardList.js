@@ -8,7 +8,7 @@ var ifLike = "";
 
 // $(document).ready(function(){});
 $(function() {
-	$("#left-panel").load( ikkosaUrl + "auth/menu.html", function() {
+	$("#left-panel").load("../auth/menu.html", function() {
 		$("#board").page("destroy").page();
 	});
 
@@ -90,7 +90,7 @@ $(function() {
 
 function plusCount(bno) {
 	console.log('조회수증가 ' + bno);
-	$.post(ikkosaUrl + 'json/board/plusCount.do' /* URL */
+	$.post('../json/board/plusCount.do' /* URL */
 	, { /* 서버에 보낼 데이터를 객체에 담아 넘긴다 */
 		no : bno
 	}, function(result) { /* 서버로부터 응답을 받았을 때 호출될 메서드 */
@@ -148,7 +148,7 @@ function loadBoardList(pageNo, orderBy, ifLike, title, content, writer, search) 
 	if (search == null)
 		search = "";
 
-	$.getJSON(ikkosaUrl + 'json/board/list.do?pageNo=' + pageNo + '&orderBy=' + orderBy
+	$.getJSON('../json/board/list.do?pageNo=' + pageNo + '&orderBy=' + orderBy
 			+ '&ifLike=' + ifLike + '&title=' + title + '&writer=' + writer
 			+ '&content=' + content + '&search=' + search, function(data) {
 		var boards = data.boards;

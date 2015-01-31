@@ -37,10 +37,9 @@ public class StorageControl {
   }
 
   @RequestMapping("/delete")
-  public Object delete(String sno) throws Exception {
-    System.out.println("control delete");
-
-    storageService.delete(sno);
+  public Object delete(String docid) throws Exception {
+    storageService.delete(docid);
+    
     HashMap<String,Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     

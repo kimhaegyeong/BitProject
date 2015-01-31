@@ -46,6 +46,15 @@ $(function() {
 			reco = true;
 		}
 	});
+	
+});
+
+$('#navBtn').on('click', function() {
+	if ($('#navList').css('display') == 'none') {
+		$('#navList').show();
+	} else {
+		$('#navList').hide();
+	}
 });
 
 function loadBoardView(no) {
@@ -64,9 +73,9 @@ function loadBoardView(no) {
 			// template(출력할 변수)
 			$('#listDiv').html(template(data));
 			yyyyMMddView(board.date);
-		});		
-		
-		$('#boardWrite').page('destroy').page();		
+		});
+
+		$('#boardWrite').page('destroy').page();
 	});
 }
 

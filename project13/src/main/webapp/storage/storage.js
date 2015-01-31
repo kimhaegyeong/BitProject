@@ -55,11 +55,9 @@ $("#editBtn").click(function() {
 $("#deleteBtn").click(function() {
 	$("input[name=mycheck]:checked").each(function() {
 		var temp = $(this).val();
-		
-		console.log("test==>",temp);
+		// console.log("test==>",temp);
 		deleteStorage(temp);
 	});
-	
 	$("#totalCount").show();
 	$("#searchCount").show();
 	$(".editing").hide();
@@ -144,10 +142,6 @@ function loadStorageList(pageNo) {
       //alert(totalSize);
       $('#totalResult').html(totalSize);
       
-      // 데이터 포맷 변경
-      	yyyyMMddprice(storages);
-		priceFormat(storages);
-      
       require(['text!templates/storage-table.html'], function(html){
         var template = Handlebars.compile(html);
         $('#listDiv').html( template(data) );
@@ -158,8 +152,7 @@ function loadStorageList(pageNo) {
 }
 
 function deleteStorage(sno) { // 체크된 함수파라미터를 넘길것
-	//console.log(mycheck);
-	console.log("func deleteStorage");
+	// console.log(mycheck);
 	$.getJSON('../json/storage/delete.do?sno=' + sno, function(data) {
 		if (data.status == 'success') {
 			loadStorageList(0);
@@ -167,28 +160,6 @@ function deleteStorage(sno) { // 체크된 함수파라미터를 넘길것
 			console.log("deleteStorage Fail");
 		}
 	});
-}
-
-function yyyyMMddprice(storages) {
-	var str;
-	var date;
-
-	for ( var i in storages) {
-		sdate = storages[i].sdate;
-		str = sdate.substr(0, 4) + "." + sdate.substr(4, 2) + "."
-				+ sdate.substr(6, 2);
-		storages[i].sdate = str;
-	}
-}
-
-function priceFormat(storages) {
-	var price;	
-	
-	for ( var i in storages) {
-		price = String(storages[i].price);
-		storages[i].price = price.split(
-				/(?=(?:\d{3})+(?:\.|$))/g).join(',');
-	}
 }
 
 /*
