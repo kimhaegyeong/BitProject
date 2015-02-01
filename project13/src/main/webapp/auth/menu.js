@@ -1,7 +1,7 @@
 $(document).on( 'pageinit',function(event){
 	$("#query").keydown(function(key) {
 		if (key.keyCode == 13) {
-			location.href = "../api/list.html?searchKey=" + $('#query').val();
+			location.href = ikkosaUrl + "api/list.html?searchKey=" + $('#query').val();
 		}
 	});
 });
@@ -11,17 +11,17 @@ $("#barcodeBtn").click(function() {
 });
 
 $('#loginBtn').click(function() {
-	location.href = '../auth/login.html';
+	location.href = ikkosaUrl + 'auth/login.html';
 });
 
 $('.logoutBtn').click(function(event) {
-	$.getJSON('../json/auth/logout.do', function(data) {
-		location.href = '../auth/login.html';
+	$.getJSON(ikkosaUrl + 'json/auth/logout.do', function(data) {
+		location.href = ikkosaUrl + 'auth/login.html';
 	});
 });
 
 $('#homeBtn').click(function() {
-	location.href = '../user/home.html';
+	location.href = ikkosaUrl + 'user/home.html';
 });
 
 /*
@@ -29,23 +29,35 @@ $('#homeBtn').click(function() {
  */
 
 $('#mypage').click(function() {
-	location.href = '../user/checkPwd.html';
+	if(loginUser){
+		location.href = ikkosaUrl + 'user/checkPwd.html';
+	}else{
+		alert("로그인후 이용하세요");
+		location.href = ikkosaUrl + 'auth/login.html';
+	}
+	
 });
 
 $('#storage').click(function() {
-	location.href = '../storage/storage.html';
+	if(loginUser){
+		location.href = ikkosaUrl + 'storage/storage.html';
+	}else{
+		alert("로그인후 이용하세요");
+		location.href = ikkosaUrl + 'auth/login.html';
+	}
+	
 });
 
 $('#community').click(function() {
-	location.href = '../board/boardList.html';
+	location.href = ikkosaUrl + 'board/boardList.html';
 });
 
 $('#good').click(function() {
-	location.href = '../board/boardList.html?ifLike=true';
+	location.href = ikkosaUrl + 'board/boardList.html?ifLike=true';
 });
 
 $('#bad').click(function() {
-	location.href = '../board/boardList.html?ifLike=false';
+	location.href = ikkosaUrl + 'board/boardList.html?ifLike=false';
 });
 
 

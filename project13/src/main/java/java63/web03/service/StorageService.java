@@ -69,9 +69,17 @@ public class StorageService {
   @Transactional(
       rollbackFor=Exception.class, 
       propagation=Propagation.REQUIRED)
-  public void delete(String docid) {
+  public void delete(int sno) {
     /*storageDao.deletePhoto(storageNo);*/
-    storageDao.delete(docid);
+    storageDao.delete(sno);
+  }
+  
+  @Transactional(
+      rollbackFor=Exception.class, 
+      propagation=Propagation.REQUIRED)
+  public void deleteDocid(String docid) {
+    /*storageDao.deletePhoto(storageNo);*/
+    storageDao.deleteDocid(docid);
   }
   
   public Storage get(String docid) {

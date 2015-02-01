@@ -6,10 +6,49 @@ var currentBoard;
 var prevBoard;
 var nextBoard;
 var reco = false;
+var link = document.location.href;
 
-// $(document).ready(function(){});
+$("#twitter").click(function(){
+	$("#twitter").attr("href", "https://twitter.com/intent/tweet?text=TEXT&url=" + link);
+});
+
+$("#facebook").click(function(){
+	$("#facebook").attr("href", "http://www.facebook.com/sharer/sharer.php?u=" + link);
+});
+
+
+$(function(){
+	Kakao.init('10024d56a79e57e162c263644cc1e6d5');
+
+//	카카오톡 링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+	Kakao.Link.createTalkLinkButton({
+		container: '#kakao-link-btn',
+		label: '카카오링크 샘플에 오신 것을 환영합니다.',
+		image: {
+			src: 'http://dn.api1.kage.kakao.co.kr/14/dn/btqaWmFftyx/tBbQPH764Maw2R6IBhXd6K/o.jpg',
+			width: '300',
+			height: '200'
+		},
+		webButton: {
+			text: '이꼭사!',
+			url: 'http://192.168.0.15:8080/project06/user/home.html' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
+		}
+	});
+
+});
+
+$(document).ready(function(){
+	$("#ktalk").click(function(){
+		executeURLLink();
+	});
+	
+	$("#kstory").click(function(){
+		executeKakaoStoryLink();
+	});
+});
+
+
 $(function() {
-	$('#menuPanel').load('../common/panel.html');
 
 	// console.log('getURLParameter : ' + getURLParameter('no'));
 	currentBoard = getURLParameter('no');
@@ -23,19 +62,19 @@ $(function() {
 	});
 
 	$('#btnReply').click(function() {
-		location.href = '../reply/reply.html?no=' + currentBoard;
+		location.href = ikkosaUrl + 'reply/reply.html?no=' + currentBoard;
 	});
 
 	$('#btnUpdate').click(function() {
-		location.href = 'boardUpdateForm.html?no=' + currentBoard;
+		location.href = ikkosaUrl + 'boardUpdateForm.html?no=' + currentBoard;
 	});
 
 	$('#prevBoardBtn').click(function(event) {
-		location.href = 'boardView.html?no=' + prevBoard;
+		location.href = ikkosaUrl + 'boardView.html?no=' + prevBoard;
 	});
 
 	$('#nextBoardBtn').click(function(event) {
-		location.href = 'boardView.html?no=' + nextBoard;
+		location.href = ikkosaUrl + 'boardView.html?no=' + nextBoard;
 	});
 
 	$('#likeBtn').click(function() {
@@ -46,19 +85,10 @@ $(function() {
 			reco = true;
 		}
 	});
-	
-});
-
-$('#navBtn').on('click', function() {
-	if ($('#navList').css('display') == 'none') {
-		$('#navList').show();
-	} else {
-		$('#navList').hide();
-	}
 });
 
 function loadBoardView(no) {
-	$.getJSON('../json/board/view.do?no=' + no, function(data) {
+	$.getJSON(ikkosaUrl + 'json/board/view.do?no=' + no, function(data) {
 		var board = data.board;
 
 		console.log(data);
@@ -73,16 +103,16 @@ function loadBoardView(no) {
 			// template(출력할 변수)
 			$('#listDiv').html(template(data));
 			yyyyMMddView(board.date);
-		});
-
-		$('#boardWrite').page('destroy').page();
+		});		
+		
+		$('#boardWrite').page('destroy').page();		
 	});
 }
 
 function deleteBoard(no) {
-	$.getJSON('../json/board/delete.do?no=' + no, function(data) {
+	$.getJSON(ikkosaUrl + 'json/board/delete.do?no=' + no, function(data) {
 		if (data.status == 'success') {
-			location.href = '../board/boardList.html';
+			location.href = ikkosaUrl + 'board/boardList.html';
 		}
 	});
 }
@@ -135,7 +165,7 @@ function yyyyMMddView(date) {
 }
 
 function MoveBoard(no) {
-	$.getJSON('../json/board/moveBoard.do?no=' + currentBoard, function(data) {
+	$.getJSON(ikkosaUrl + 'json/board/moveBoard.do?no=' + currentBoard, function(data) {
 		if (data.status == 'success') {
 			console.log(data.prevBoard);
 			console.log(data.nextBoard);
@@ -167,7 +197,7 @@ function MoveBoard(no) {
 
 function plusReco(bno) {
 	// console.log('조회수증가 ' + bno);
-	$.post('../json/board/plusReco.do' /* URL */
+	$.post(ikkosaUrl + 'json/board/plusReco.do' /* URL */
 	, {
 		no : bno
 	}, function(result) { /* 서버로부터 응답을 받았을 때 호출될 메서드 */

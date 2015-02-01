@@ -38,6 +38,9 @@ dependencies {
   compile 'org.mybatis:mybatis:3.2.8'
   compile 'mysql:mysql-connector-java:5.1.34'
   compile 'org.reflections:reflections:0.9.9'
+  
+  compile 'javax.mail:mail:1.4.7' //자바 mail api
+  compile 'javax.activation:activation:1.1.1'//자바 mail관련 api
   //testCompile 'junit:junit:4.+'
 }
 

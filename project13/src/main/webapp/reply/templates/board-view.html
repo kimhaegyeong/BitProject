@@ -1,15 +1,16 @@
-<div id="titleSection">
-	<div>
-		<h3 id='title'>{{board.title}}</h3>
-	</div>
-	<div id="detailSection">
-		<p>
-			{{board.userName}} | 날짜: <span id='dateFormat'></span> | 조회수 : {{board.count}} |
-			추천수 : <span id='originReco'>{{board.recommend}}</span> <span
-				id='updateReco'></span>
-		</p>
-		<a href="#" data-rel="back" class="listBtn"><span>목록</span></a> <a
-			href="#" class="listBtn" id="anotherReplyBtn"><span>댓글</span><span
-			id='rcountStyle'> {{board.rcount}}</span></a>
-	</div>
-</div>
+ <h2>{{title}}</h2>
+    <p class="if if_v1">
+      <span class="if_inr">
+        <span class="im">
+          <span class="bar"></span>
+        </span>
+        <span class="nowp">
+          <span class="bar"></span> 조회수 : {{count}}
+        </span>
+        <br>
+        <span class="hc">작성자 :</span>
+        <em>
+          <a href="#">{{userName}}</a>
+        </em>
+      </span>
+    </p>

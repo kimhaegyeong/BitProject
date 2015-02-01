@@ -2,14 +2,11 @@
 <html>
 <head>
 <title>내정보 수정</title>
-<meta name="viewport" content="width=device-width, initial-scale=1"
-	charset="UTF-8">
-<link rel="stylesheet"
-	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 <link rel="stylesheet" href="../css/red.css" />
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script
-	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <style>
 #email {
   background-color: #C0C0C0;
@@ -52,9 +49,11 @@ h1 {
 
 			<form method="post" action="update.do" role="form">
 				<div>
-					<label for="email">이메일</label> <input readonly type="text"
-						name="email" id="email"> <label for="name">닉네임</label> <input
-						type="text" name="name" id="name" placeholder="닉네임">
+					<label for="email">이메일</label> 
+					<input readonly type="text" name="email" id="email"> 
+						
+						<label for="name">닉네임</label> 
+						<input type="text" name="name" id="name" placeholder="닉네임">
 					<div id="checkName">&nbsp;</div>
 				</div>
 
@@ -64,14 +63,14 @@ h1 {
 								<div id="checkPwd">&nbsp;</div>
 								<br> -->
 
-				<label for="pwd">새 비밀번호</label> <input type="password" name="newPwd"
-					id="newPwd" placeholder="새 비밀번호" data-theme="a"
-					onkeyup="checkPwd()" />
-				<div id="checkNewPwd">&nbsp;</div>
+				<label for="pwd">새 비밀번호</label> 
+                <input type="password" name="newPwd" id="newPwd" 
+                  placeholder="새 비밀번호" data-theme="a" onkeyup="checkPwd()"/>
+                  <div id="checkNewPwd">&nbsp;</div>
 
-				<label for="pwd">새 비밀번호 확인</label> <input type="password"
-					name="rePwd" id="rePwd" placeholder="새 비밀번호 확인" data-theme="a"
-					onkeyup="checkPwd()" />
+				<label for="pwd">새 비밀번호 확인</label> 
+                <input type="password" name="rePwd" id="rePwd" 
+                  placeholder="새 비밀번호 확인" data-theme="a" onkeyup="checkPwd()"/>
 
 				<button id="btnUpdate" type="button" data-theme="b">변 경</button>
 				<!-- 	<button id="btnCancel" type="reset" data-theme="b" data-rel="back">취 소</button> -->

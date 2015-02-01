@@ -37,7 +37,7 @@ $(function() {
 							+ content + '&search=' + $('#inputSearch').val());
 					*/
 					// 2. 인코드 안하고 이동
-					 location.href="boardList.html?ifLike=" + range +
+					 location.href= ikkosaUrl + "boardList.html?ifLike=" + range +
 					  "&title=" + title + "&writer=" + writer + "&content=" +
 					  content + '&search=' + $('#inputSearch').val();
 					 

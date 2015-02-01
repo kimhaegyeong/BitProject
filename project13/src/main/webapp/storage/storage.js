@@ -5,6 +5,7 @@ $(function() {
 	// 패널 정의!
 	$("#left-panel").load("../auth/menu.html", function() {
 		$("#storagePage").page("destroy").page();
+		console.log("ikkosaUrl 값 " + ikkosaUrl);
 	});
 
 	
@@ -55,7 +56,7 @@ $("#editBtn").click(function() {
 $("#deleteBtn").click(function() {
 	$("input[name=mycheck]:checked").each(function() {
 		var temp = $(this).val();
-		// console.log("test==>",temp);
+		 console.log("test==>",temp);
 		deleteStorage(temp);
 	});
 	$("#totalCount").show();

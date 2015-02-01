@@ -1,6 +1,7 @@
 package java63.web03.dao;
 
 import java.util.Map;
+
 import java63.web03.domain.User;
 
 /* myBatis에서 DAO 클래스를 만들 때 
@@ -15,14 +16,9 @@ import java63.web03.domain.User;
 public interface UserDao {
   User selectOne(int no);
   void update(User user);
-  //void delete(int no);
-  /*List<?> selectList(Map<String,Object> params);*/
+  void changePwd(User user);
   void insert(User user);
   User existUser(Map<String,String> params);
-/*  void insertPhoto(Product product);
-  List<?> selectPhoto(int productNo);
-  void deletePhoto(int productNo);*/
-  /*int totalSize();*/
 }
 
 

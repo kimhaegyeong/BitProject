@@ -6,7 +6,6 @@
 <!-- <sql> 태그 사용하기
 => 자주 사용되는 SQL문은 별도로 정의해두고 포함한다.
 -->
-
 <mapper namespace="java63.web03.dao.UserDao">
 
   <!-- 객체의 컬럼과 프로퍼티를 연결한다. -->
@@ -36,7 +35,13 @@
       NAME=#{name},
       PWD=#{newPwd}
     WHERE UNO=#{no}
-  </update> 
+  </update>
+  
+   <update id="changePwd" parameterType="User">
+       UPDATE USERS SET
+       PWD=#{newPwd}
+       WHERE EMAIL=#{email}
+   </update>
   
 </mapper>
 

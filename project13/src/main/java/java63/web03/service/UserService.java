@@ -43,13 +43,15 @@ public class UserService {
   @Transactional(
       rollbackFor=Exception.class, 
       propagation=Propagation.REQUIRED)
-  public void update(User user) {
-    
-    System.out.println("UserService 시작" + user);
-    
+  public void update(User user) {  
     userDao.update(user);
-    
-    System.out.println("UserService 끝" + user);
+  }
+  
+  @Transactional(
+      rollbackFor=Exception.class, 
+      propagation=Propagation.REQUIRED)
+  public void changePwd(User user) {
+    userDao.changePwd(user);
   }
   
 }

@@ -25,10 +25,7 @@ public class StorageControl {
  
   @RequestMapping(value="/add", method=RequestMethod.POST)
   public Object add(Storage storage) throws Exception {  
-    
-    System.out.println("add시작!!!!!!!" +storage );
     storageService.add(storage);
-    System.out.println("add끝!!!!!!!" +storage);
     
     HashMap<String,Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
@@ -37,9 +34,17 @@ public class StorageControl {
   }
 
   @RequestMapping("/delete")
-  public Object delete(String docid) throws Exception {
-    storageService.delete(docid);
+  public Object delete(int sno) throws Exception {
+    storageService.delete(sno); 
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
     
+    return resultMap;
+  }
+  
+  @RequestMapping("/deleteDocid")
+  public Object deleteDocid(String docid) throws Exception {
+    storageService.deleteDocid(docid); 
     HashMap<String,Object> resultMap = new HashMap<>();
     resultMap.put("status", "success");
     

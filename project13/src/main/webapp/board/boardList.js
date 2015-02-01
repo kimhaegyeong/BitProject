@@ -5,11 +5,13 @@ var currPageNo;
 var maxPageNo;
 var saveOrderBy = "";
 var ifLike = "";
+var ikkosaUrl = ikkosaUrl;
 
 // $(document).ready(function(){});
 $(function() {
 	$("#left-panel").load("../auth/menu.html", function() {
 		$("#board").page("destroy").page();
+		console.log("boardList URL => ", ikkosaUrl);
 	});
 
 	// url 파싱
@@ -90,13 +92,13 @@ $(function() {
 
 function plusCount(bno) {
 	console.log('조회수증가 ' + bno);
-	$.post('../json/board/plusCount.do' /* URL */
+	$.post(ikkosaUrl + '/json/board/plusCount.do' /* URL */
 	, { /* 서버에 보낼 데이터를 객체에 담아 넘긴다 */
 		no : bno
 	}, function(result) { /* 서버로부터 응답을 받았을 때 호출될 메서드 */
 		if (result.status == "success") {
 			$('#btnCancel').click(); // click 이벤트 발생시킴.
-			location.href = 'boardView.html?no=' + bno;
+			location.href = ikkosaUrl + 'board/boardView.html?no=' + bno;
 		} else {
 			alert("등록 실패!");
 		}

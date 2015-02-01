@@ -1,4 +1,4 @@
-var user;
+//var user;
 var signUpCheckEmail = false; 
 var signUpCheckName = false;
 var regExp4 = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{1,20}$/;
@@ -6,9 +6,7 @@ var regExp5 = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])
 var regExp6 = /^[0-9a-zA-Z가-힣]([-_\.]?[0-9a-zA-Z가-힣])*$/i; //닉네임
 
 $('#btnCancel').click(function(){
-	$('.my-update-form').css('display', 'none');
-	$('.my-new-form').css('display', '');
-	user = null;
+	location.reload(); //새로고침
 });
 
 $('#btnAdd').click(function(){
@@ -25,11 +23,7 @@ $('#btnAdd').click(function(){
 		alert("비밀번호를 바르게 입력하세요.");
 		return;
 	}
-	/*$.post(URL, 성공함수)
-     .fail(실패함수)
-     .done(성공함수2)
-     .always(마무리함수);
-	 */
+
 	$.post('../json/user/add.do' /* URL */
 			, { /* 서버에 보낼 데이터를 객체에 담아 넘긴다 */
 				email : $('#email').val(),
@@ -38,9 +32,8 @@ $('#btnAdd').click(function(){
 			} 
 			, function(result){ /* 서버로부터 응답을 받았을 때 호출될 메서드*/
 				if (result.status == "success") {
-					/*loadProductList(1);*/
+					alert("회원가입 성공");
 					location.href = '../auth/login.html';
-					$('#btnCancel').click(); // click 이벤트 발생시킴.
 				} else {
 					alert("등록 실패!");
 				}
