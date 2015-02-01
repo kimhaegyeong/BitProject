@@ -7,6 +7,7 @@ var prevBoard;
 var nextBoard;
 var reco = false;
 var link = document.location.href;
+var userNo;
 
 $("#twitter").click(function(){
 	$("#twitter").attr("href", "https://twitter.com/intent/tweet?text=TEXT&url=" + link);
@@ -31,7 +32,7 @@ $(function(){
 		},
 		webButton: {
 			text: '이꼭사!',
-			url: 'http://192.168.0.15:8080/project06/user/home.html' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
+			url: 'http://192.168.0.15:8080/project08/user/home.html' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
 		}
 	});
 
@@ -57,24 +58,24 @@ $(function() {
 
 	$('#btnDelete').click(function() {
 		if (window.confirm('삭제하시겠습니까?')) {
-			deleteBoard(currentBoard);
+			deleteBoard(currentBoard, userNo);
 		}
 	});
 
 	$('#btnReply').click(function() {
-		location.href = ikkosaUrl + 'reply/reply.html?no=' + currentBoard;
+		location.href =  '../reply/reply.html?no=' + currentBoard;
 	});
 
 	$('#btnUpdate').click(function() {
-		location.href = ikkosaUrl + 'boardUpdateForm.html?no=' + currentBoard;
+		location.href =   'boardUpdateForm.html?no=' + currentBoard;
 	});
 
 	$('#prevBoardBtn').click(function(event) {
-		location.href = ikkosaUrl + 'boardView.html?no=' + prevBoard;
+		location.href = 'boardView.html?no=' + prevBoard;
 	});
 
 	$('#nextBoardBtn').click(function(event) {
-		location.href = ikkosaUrl + 'boardView.html?no=' + nextBoard;
+		location.href =  'boardView.html?no=' + nextBoard;
 	});
 
 	$('#likeBtn').click(function() {
@@ -87,8 +88,16 @@ $(function() {
 	});
 });
 
+$('#navBtn').on('click', function() {
+	if ($('#navList').css('display') == 'none') {
+		$('#navList').show();
+	} else {
+		$('#navList').hide();
+	}
+});
+
 function loadBoardView(no) {
-	$.getJSON(ikkosaUrl + 'json/board/view.do?no=' + no, function(data) {
+	$.getJSON('../json/board/view.do?no=' + no, function(data) {
 		var board = data.board;
 
 		console.log(data);
@@ -99,8 +108,9 @@ function loadBoardView(no) {
 
 		require([ 'text!templates/board-view.html' ], function(html) {
 			var template = Handlebars.compile(html);
-			// handlebars 이용시!
-			// template(출력할 변수)
+			
+			userNo = data.board.userNo;
+			
 			$('#listDiv').html(template(data));
 			yyyyMMddView(board.date);
 		});		
@@ -109,10 +119,12 @@ function loadBoardView(no) {
 	});
 }
 
-function deleteBoard(no) {
-	$.getJSON(ikkosaUrl + 'json/board/delete.do?no=' + no, function(data) {
+function deleteBoard(no, userNo) {
+	$.getJSON('../json/board/delete.do?no=' + no + '&userNo=' + userNo, function(data) {
 		if (data.status == 'success') {
-			location.href = ikkosaUrl + 'board/boardList.html';
+			location.href = '../board/boardList.html';
+		}else{
+			alert("삭제할수 없습니다.");
 		}
 	});
 }
@@ -165,7 +177,7 @@ function yyyyMMddView(date) {
 }
 
 function MoveBoard(no) {
-	$.getJSON(ikkosaUrl + 'json/board/moveBoard.do?no=' + currentBoard, function(data) {
+	$.getJSON('../json/board/moveBoard.do?no=' + currentBoard, function(data) {
 		if (data.status == 'success') {
 			console.log(data.prevBoard);
 			console.log(data.nextBoard);
@@ -197,7 +209,7 @@ function MoveBoard(no) {
 
 function plusReco(bno) {
 	// console.log('조회수증가 ' + bno);
-	$.post(ikkosaUrl + 'json/board/plusReco.do' /* URL */
+	$.post('../json/board/plusReco.do' /* URL */
 	, {
 		no : bno
 	}, function(result) { /* 서버로부터 응답을 받았을 때 호출될 메서드 */

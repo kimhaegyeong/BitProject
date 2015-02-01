@@ -24,9 +24,6 @@ $('#homeBtn').click(function() {
 	location.href = ikkosaUrl + 'user/home.html';
 });
 
-/*
- * $('#viewBtn').click(function(){ location.href = '../user/home.html'; });
- */
 
 $('#mypage').click(function() {
 	if(loginUser){

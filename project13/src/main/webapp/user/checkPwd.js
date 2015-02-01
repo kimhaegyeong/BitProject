@@ -1,6 +1,6 @@
 var loginUser;
 
-$.getJSON('../json/auth/loginUser.do', function(data){
+$.getJSON(ikkosaUrl + 'json/auth/loginUser.do', function(data){
   if (data.status == 'fail') {
 	  alert("로그인후 이용하세요.");  
 	  location.href = '../auth/login.html';

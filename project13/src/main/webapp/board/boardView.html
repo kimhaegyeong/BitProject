@@ -4,14 +4,14 @@
 <title>My Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<link rel="stylesheet"
-	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="../css/jquery.mobile-1.4.5.min.css" />
 <link rel="stylesheet" href="../css/red.css" />
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script
-	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="../js/jquery-1.11.1.js"></script>
+<script src="../js/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript" src='../js/handlebars-v2.0.0.js'></script>
 <script type="text/javascript" src='../js/require.js'></script>
+
+
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 
@@ -132,6 +132,68 @@ margin : 0px;
 
 #goodFont{
 margin : 0px;
+}
+
+#navBtn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: url('../images/Plus-48.png') no-repeat;
+  width: 40px;
+  height: 40px;
+  background-size: 37px 37px;
+  border: none;
+  box-shadow: none;
+  z-index: 2;
+}
+
+#navList {
+  position: absolute;
+  bottom: 80px;
+  right: 15px;
+  border: 2px solid #444;
+  width: 270px;
+  height: 84px;
+  border-radius: 5px;
+  padding: 0px;
+  margin: 0px;  
+}
+
+#navList>li {
+  list-style: none;
+  display: inline-block;
+  width: 135.25px;
+}
+
+#navList>li:nth-child(2n) {
+  list-style: none;
+  display: inline-block;
+  margin-left: -8px;
+}
+
+#navList>li:nth-child(3n) {
+  list-style: none;
+  display: inline-block;
+  margin-top: -5px;
+}
+
+#navList>li:nth-child(4n) {
+  list-style: none;
+  display: inline-block;
+  margin-top: -5px;
+  margin-left: -8px;
+}
+
+#navList>li>a {
+  box-shadow: none;
+  margin: 0;
+  padding: 10.3px 0;
+  border-radius: 0px;
+  color: #444;
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  line-height: 20px;  
 } 
 </style>
 </head>
@@ -199,22 +261,20 @@ margin : 0px;
 		</div>
 		<!-- /contetnt -->
 
-		<div data-role="footer" data-position="fixed">
+	   <div class="navBtnWrap">
+      <button type="button" class="navBtn open" id="navBtn"></button>
 
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#" class="ui-btn ui-corner-all" id='btnReply'
-						data-role="button">reply</a></li>
-					<li><a href="#" id='btnDelete' class="ui-btn ui-corner-all"
-						data-role="button">delete</a></li>
-					<li><a href="#" id='btnUpdate' class="ui-btn ui-corner-all"
-						data-role="button">update</a></li>
-
-
-				</ul>
-			</div>
-			<!--  /navbar -->
-		</div>
+      <ul id="navList" style="display: none;">
+        <li><a href="#" id='btnReply' class="liNavList"
+          data-role="button">댓글 보기</a></li>
+        <li><a href="#" id='btnDelete' class="liNavList"
+          data-role="button">글 삭제</a></li>
+        <li><a href="#" id='btnUpdate' class="liNavList"
+          data-role="button">글 수정</a></li>
+        <li><a href="#" id='gotoTop' class="liNavList"
+          data-role="button">맨위로</a></li>
+      </ul>
+    </div>
 		<!--  /footer -->
 	</div>
 	<!-- /page -->
