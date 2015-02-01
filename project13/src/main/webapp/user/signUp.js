@@ -72,23 +72,31 @@ function checkPwd() { //비밀번호 유효성검사
 	var rePwd = document.getElementById("rePwd").value;
 		
 	if (pwd == null || pwd.length == 0) {
-		document.getElementById('checkPwd').style.color = "red";
+		document.getElementById('checkPwd').style.color = "#fa5a44";
+		$('#pwd').css("border-color", "#fa5a44");
 		document.getElementById('checkPwd').innerHTML = "비밀번호를 입력해주세요.";
 		return false;
 	}else if(!regExp4.test($("#pwd").val())){
-		document.getElementById('checkPwd').style.color = "red";
+		document.getElementById('checkPwd').style.color = "#fa5a44";
+		$('#pwd').css("border-color", "#fa5a44");
 		document.getElementById('checkPwd').innerHTML = "비밀번호는 문자, 숫자, 특수문자의 조합으로 입력해주세요.";
 		return false;
 	}else if (pwd.length < 6 || pwd.length > 16) {
-		document.getElementById('checkPwd').style.color = "red";
+		document.getElementById('checkPwd').style.color = "#fa5a44";
+		$('#pwd').css("border-color", "#fa5a44");
+
 		document.getElementById('checkPwd').innerHTML = "비밀번호는 6 ~ 16 자리로 입력해주세요.";
 		return false;
 	} else if (pwd != rePwd) {
-		document.getElementById('checkPwd').style.color = "red";
+		document.getElementById('checkPwd').style.color = "#fa5a44";
+		$('#pwd').css("border-color", "#fa5a44");
+
 		document.getElementById('checkPwd').innerHTML = "비밀번호가 일치하지 않습니다.";
 		return false;
 	} else if(pwd == rePwd){
-		document.getElementById('checkPwd').style.color = "blue";
+		document.getElementById('checkPwd').style.color = "#12aec3";
+		$('#pwd').css("border-color", "#fa5a44");
+
 		document.getElementById('checkPwd').innerHTML = "비밀번호가 확인되었습니다.";
 		return true;
 	}
@@ -132,13 +140,15 @@ function checkEmail() {
 	var swanid = document.getElementById("email").value;
 
 	if (swanid == null || swanid.length == 0) {
-		document.getElementById('checkEmail').style.color = "red";
+		document.getElementById('checkEmail').style.color = "#fa5a44";
+		$('#email').css("border-color", "#fa5a44");
 		document.getElementById('checkEmail').innerHTML = "이메일을 입력해주세요.";
 		return false;
 	}
 
 	else if(!regExp5.test($('#email').val())){
-		document.getElementById('checkEmail').style.color = "red";
+		document.getElementById('checkEmail').style.color = "#fa5a44";
+		$('#email').css("border-color", "#fa5a44");
 		document.getElementById('checkEmail').innerHTML = "이메일을 잘못 입력하였습니다.";	
 		return false;
 
@@ -151,11 +161,14 @@ function checkEmail() {
 function checkName() { //닉네임 유효성검사
 	var swanname = document.getElementById("name").value;
 	if (swanname == null || swanname.length == 0) {
-		document.getElementById('checkName').style.color = "red";
+		document.getElementById('checkName').style.color = "#fa5a44";
+		$('#name').css("border-color", "#fa5a44");
 		document.getElementById('checkName').innerHTML = "닉네임을 입력해주세요.";
 		return false;
 	} else if(!regExp6.test($('#name').val())){
-		document.getElementById('checkName').style.color = "red";
+		document.getElementById('checkName').style.color = "#fa5a44";
+		$('#name').css("border-color", "#fa5a44");
+
 		document.getElementById('checkName').innerHTML = "닉네임을 잘못 입력하였습니다.(특수문자 입력불가!)";
 		return false;
 	}else{
@@ -166,28 +179,38 @@ function checkName() { //닉네임 유효성검사
 function signUpCheck(data){
 	/*console.log("data", data);*/
 	if (data.result == "사용 가능한 이메일 입니다.") {
-		$('#checkEmail').css("color", "blue");
+		$('#checkEmail').css("color" , "#12aec3");
+		$('#email').css("border-color", "#12aec3");
+
 		signUpCheckEmail = true;
 		return true;
 
 	}else if (data.result == "중복된 이메일이 존재합니다.") {
-		$('#checkEmail').css("color", "red");
+		$('#checkEmail').css("color", "#fa5a44");
+		$('#email').css("border-color", "#fa5a44");
 		signUpCheckEmail = false;
 		return false;
 	}else if (data.result == "사용 가능한 닉네임 입니다.") {
-		$('#checkName').css("color", "blue");
+		$('#checkName').css("color", "#12aec3");
+		$('#name').css("border-color", "#12aec3");
 		signUpCheckName = true;
 		return true;
 	} else if (data.result == "중복된 닉네임이 존재합니다.") {
-		$('#checkName').css("color", "red");
+		$('#checkName').css("color", "#fa5a44");
+		$('#name').css("border-color", "#fa5a44");
+
 		signUpCheckName = false;
 		return false;
 	}else if (data.result == "비밀번호 불일치") {
-		$('#checkPwd').css("color", "red");
+		$('#checkPwd').css("color", "#fa5a44");
+		$('#pwd').css("border-color", "#fa5a44");
+
 		signUpCheckName = false;
 		return false;
 	}else if (data.result == "비밀번호 일치") {
-		$('#checkPwd').css("color", "blue");
+		$('#checkPwd').css("color", "#12aec3");	
+		$('#rePwd').css("border-color", "#12aec3");
+
 		signUpCheckName = true;
 		return true;
 	}
