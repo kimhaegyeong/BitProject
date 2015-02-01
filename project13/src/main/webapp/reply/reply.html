@@ -17,13 +17,20 @@
 	padding: 0;
 }
 
+/* 2.1 수정 */
 .font-set {
-	font-size: 0.8em;
+	font-size: 13px;
+	color: #888;
+	font-family: Helvetica, sans-sarif;
+	padding: 0;
 }
 
+/* 2.1 수정 */
 .clst_cont {
-	font-size: 1.1em;
-	padding-top: 10px;
+	font-weight: normal;
+	font-size: 15px;
+	line-height: 18px;
+	padding: 5px 0;
 }
 
 /* footer Nav */
@@ -142,6 +149,37 @@
 span#rcountStyle {
 	color: #f44343;
 }
+
+/* 2.1 추가 */
+.ui-listview>li {
+	padding: 15px;
+	border-bottom: 1px solid #bbbbbb;
+}
+/* 
+.innerLiClass {
+	border: 1px solid black;
+} */
+.font-set>a {
+	color: #888;
+	text-decoration: none;
+	font-weight: 300;
+}
+
+.bar {
+	color: #ebebeb;
+}
+
+.ui-content .ui-listview {
+	margin: 0px;
+}
+
+#footerDiv {
+	padding: 0 10px;
+}
+
+html body .ui-group-theme-b .ui-body-inherit {
+	border-color: #A0A0A0;	
+}
 </style>
 
 </head>
@@ -153,9 +191,9 @@ span#rcountStyle {
 		<div data-role="panel" id="left-panel" data-display="overlay"></div>
 
 		<div data-role="header" data-position="fixed">
-			<a href="#left-panel"
-				class="ui-btn ui-icon-bars ui-btn-icon-notext ui-corner-all ui-nodisc-icon transparentButton"></a>
-
+		<a href="#" data-rel="back"
+					class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all ui-nodisc-icon transparentButton">before</a>
+			
 			<h1>댓 글</h1>
 		</div>
 		<!-- /header -->
@@ -170,7 +208,8 @@ span#rcountStyle {
 				id='listDiv'></ul>
 
 			<!-- 팝업 창 -->
-			<div data-role="popup" id="popupMenu" data-theme="a">
+			<div data-role="popup" id="popupMenu" data-theme="a"
+				data-shadow="false">
 				<ul data-role="listview" data-inset="true" style="min-width: 210px;"
 					data-theme="b">
 					<li class="writeReply">댓 글</li>
@@ -200,9 +239,9 @@ span#rcountStyle {
 		<!-- 댓글 쓰기 부분 -->
 		<div data-role="footer" data-position="fixed">
 			<form method="post" action="demoform.asp">
-				<div>
+				<div id="footerDiv">
 					<input type="text" name="Reply" class="writeReply"
-						placeholder="덧글쓰기">
+						id="writeReplyInput" placeholder="덧글쓰기">
 				</div>
 			</form>
 		</div>
