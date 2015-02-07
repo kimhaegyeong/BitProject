@@ -10,6 +10,17 @@
 정해창(https://github.com/Jeonghaechang/BitProject)
 이 참가 하였습니다.
 
+위 프로젝트는 절대 상업적 용도 사용되지 않을 것이며 학습용으로 제작되었음을 미리 밝힙니다.
+각 파일의 css 부분에서 다음과 같은 사이트에서 모티브를 얻어 작성되었습니다.
+board/boardView.html -  전체 스타일 : 다음 까페 모바일 웹페이지 부분
+                        하단 플러스 버튼 : 네이트 판 모바일 웹페이지 버튼
+board/boardSearch.html - 네이버 까페 검색 부분
+auth/menu.html  - 티몬 앱 메뉴 부분
+login/login.html - 티몬 모바일 웹페이지 로그인 부분
+각 페이지의 더보기/맨위로 버튼 - 다음 쇼핑하우 하단 버튼 부분
+
+
+
 
 
 
