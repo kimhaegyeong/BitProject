@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"
+	charset="UTF-8">
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<style>
+.ui-grid-b {
+	font-size: 8pt;
+}
+
+#title{
+font-size: 16pt;
+}
+
+#id{
+font-size: 12pt
+}
+
+img {
+ width: 30px;
+}
+</style>
+
+</head>
+<body>
+
+	<!-- Start of first page -->
+	<div data-role="page" id="foo">
+		<div data-role="header" data-position="fixed">
+			<h1>좋 아 요</h1>
+			<a href="index.html" data-icon="bars" class="ui-btn-left"
+				data-iconpos="notext"></a>
+		</div> <!-- /header -->
+		
+
+		<div id="title" class="ui-bar ui-bar-a">
+			<p>제목: 아이폰</p>
+		</div>
+
+		<div id="id" class="ui-bar ui-bar-a">
+			<h3>아이디 : 111111</h3>
+		</div>
+
+		<div class="ui-grid-b">
+			<div class="ui-block-a">
+				<div class="ui-bar ui-bar-a" style="height: 33%">
+					<p>날짜: 14.12.20</p>
+				</div>
+			</div>
+			<div class="ui-block-b">
+				<div class="ui-bar ui-bar-a" style="height: 33%">
+					<p>조회수 : 7777</p>
+				</div>
+			</div>
+			<div class="ui-block-c">
+				<div class="ui-bar ui-bar-a" style="height: 33%">
+					<p>추천수 : 500</p>
+				</div>
+			</div>
+		</div>
+
+		<div id='content'>
+			<ul data-role="listview" data-icon="false" data-split-theme="d">
+				<li><a href="#bar" data-transition="flow"> <img
+						src="../image/iphone.jpg" />
+						<h3>Broken Bels</h3>
+						<p>Broken Bels</p>
+				</a></li>
+			</ul>
+		</div>
+
+		<div data-role="navbar" class="nav-glyphish-example" data-grid="d"
+			data-position="fixed">
+			<ul>
+				<li><a href="#" id="twitter" data-icon="custom">Twitter</a></li>
+				<li><a href="#" id="facebook" data-icon="custom">Facebook</a></li>
+				<li><!-- <a href="#" id="kakaotalk" data-icon="custom">Kakao</a> -->
+				 <a id="kakao-link-btn" href="javascript:;">
+      <img src="http://dn.api1.kage.kakao.co.kr/14/dn/btqa9B90G1b/GESkkYjKCwJdYOkLvIBKZ0/o.jpg" />
+    <br>카카오톡</a>
+				
+				</li>
+				<li><a href="#" id="band" data-icon="custom">Band</a></li>
+				<li><a href="#" id="like" data-icon="custom">좋아요</a></li>
+			</ul>
+		</div>
+	
+
+	<div data-role="footer" data-position="fixed">
+      <div data-role="navbar">
+          <ul>
+            <li><a href="#">reply</a></li>
+            <li><a href="#">delete</a></li>
+            <li><a href="#">update</a></li>
+          </ul>
+        </div> <!--  /navbar -->
+    </div> <!--  /footer -->
+</div> <!-- /page -->
+
+</body>
+
+<!-- 카카오톡  -->
+ <script>
+    // 사용할 앱의 Javascript 키를 설정해 주세요.
+    // 1373d3e12e65cd37679e4f2956c04a08 : 키값
+    Kakao.init('1373d3e12e65cd37679e4f2956c04a08');
+
+    // 카카오톡 링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createTalkLinkButton({
+      container: '#kakao-link-btn',
+      label: '카카오링크 테스트!!',
+      image: {
+        src: 'image/heart-64.png',
+        width: '300',
+        height: '200'
+      },
+      webButton: {
+        text: '카카오 디벨로퍼스',
+        url: 'https://dev.kakao.com/docs/js' // 앱 설정의 웹 플랫폼에 등록한 도메인의 URL이어야 합니다.
+      }
+    });
+    </script>
+</html>

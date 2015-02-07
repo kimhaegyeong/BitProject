@@ -11,7 +11,7 @@
 
 <style>
 #email {
-	background-color: #C0C0C0;
+	background-color: #E3E3E3;
 }
 
 #btnUpdate {
@@ -51,7 +51,16 @@ h1 {
 }
 
 #emailLabel {
+	color: #12aec3;
+	font-weight: bold;
+	letter-spacing: -1.5;
+	margin-bottom: -5px;
+	padding-left: 5px;
+}
 
+#emailSection {
+	padding-bottom: 30px;
+	border-bottom: 1px solid #d7dadd;
 }
 </style>
 
@@ -73,21 +82,22 @@ h1 {
 		<div data-role="content">
 
 			<form method="post" action="update.do" role="form">
-				<div>
-					<label id="emailLabel" for="email">나의 이메일</label> <input readonly type="text"
-						name="email" id="email" class="formInput"> <input
-						type="text" name="name" id="name" placeholder="닉네임 변경" class="formInput">
-					<div id="checkName">&nbsp;</div>
+				<div id="emailSection">
+					<label id="emailLabel" for="email">나의 이메일</label> <input readonly
+						type="text" name="email" id="email" class="formInput">
 				</div>
-				
-				 <input type="password" name="newPwd"
-					id="newPwd" placeholder="새 비밀번호 입력" data-theme="a"
-					onkeyup="checkPwd()" class="formInput"/>
-				<div id="checkNewPwd">&nbsp;</div>
 
-				 <input type="password"
-					name="rePwd" id="rePwd" placeholder="새 비밀번호 확인" data-theme="a"
-					onkeyup="checkPwd()" class="formInput"/>
+				<input type="text" name="name" id="name" placeholder="닉네임 변경"
+					class="formInput">
+				<div id="checkName"></div>
+				<input type="password" name="newPwd" id="newPwd"
+					placeholder="새 비밀번호 입력" data-theme="a" onkeyup="checkPwd()"
+					class="formInput" />
+				<div id="checkNewPwd"></div>
+
+				<input type="password" name="rePwd" id="rePwd"
+					placeholder="새 비밀번호 확인" data-theme="a" onkeyup="checkPwd()"
+					class="formInput" />
 
 				<button id="btnUpdate" type="button" data-theme="b">변 경</button>
 			</form>
