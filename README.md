@@ -19,7 +19,7 @@ auth/menu.html  - 티몬 앱 메뉴 부분
 login/login.html - 티몬 모바일 웹페이지 로그인 부분
 각 페이지의 더보기/맨위로 버튼 - 다음 쇼핑하우 하단 버튼 부분
 
-본 프로젝트의 시연영상은 http://youtu.be/2mwzNirF0vY 에서 보실 수 있습니다.
+본 프로젝트의 시연영상은 http://youtu.be/_hSHpRyjL-Q에서 보실 수 있습니다.
 
 
 
