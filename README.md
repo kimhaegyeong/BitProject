@@ -19,8 +19,11 @@ auth/menu.html  - 티몬 앱 메뉴 부분
 login/login.html - 티몬 모바일 웹페이지 로그인 부분
 각 페이지의 더보기/맨위로 버튼 - 다음 쇼핑하우 하단 버튼 부분
 
-본 프로젝트의 시연영상은 http://youtu.be/_hSHpRyjL-Q 에서 보실 수 있습니다.
+본 프로젝트의 시연영상은 http://youtu.be/_hSHpRyjL-Q 에서 보실 수 있습니다.<br>
 
+
+slidshare 
+<iframe src="https://www.slideshare.net/slideshow/embed_code/key/AR8m5Tg3Wa7HKs" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/kimhaegyeong/final-not-face" title=""이건 꼭 사야돼" 프로젝트" target="_blank">"이건 꼭 사야돼" 프로젝트</a> </strong> from <strong><a href="http://www.slideshare.net/kimhaegyeong" target="_blank">kimhaegyeong</a></strong> </div>
 
 
 
